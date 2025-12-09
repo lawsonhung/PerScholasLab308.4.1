@@ -66,7 +66,6 @@ try {
   console.log(`Raw data to obj: ${rawObj}`);
   console.log(...rawObj);
 
-
   console.log('\nPART FOUR---------------------------------------');
   rawObj.pop();
   console.log(`rawObj after popping last item: ${rawObj}`);
@@ -88,6 +87,35 @@ try {
   }
   console.log(`\nTotal age: ${sum}`);
   console.log(`Average age: ${sum / rawObj.length}`);
+
+  console.log('\nPART FIVE---------------------------------------');
+  let csvRawAgain = '';
+
+  const keys = Object.keys(rawObj[0]);
+  for (let keyIndex in keys) {
+    const key = keys[keyIndex];
+    csvRawAgain += key;
+    if (keyIndex < keys.length - 1)
+      csvRawAgain += ',';
+  }
+  console.log('Keys of csv');
+  console.log(csvRawAgain);
+
+  for (let i = 0; i < rawObj.length; i++) {
+    const currentObj = rawObj[i];
+    csvRawAgain += '\n';
+    console.log(currentObj)
+    for (let keyIndex in keys) {
+      const key = keys[keyIndex];
+      console.log(currentObj[key]);
+      csvRawAgain += currentObj[key];
+      if (keyIndex < keys.length - 1) 
+        csvRawAgain += ',';
+    }
+  }
+
+  console.log(csvRawAgain);
+  console.log(JSON.stringify(csvRawAgain));
 
 } catch (err) {
   console.error(err);
